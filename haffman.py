@@ -15,7 +15,6 @@ class Node:
             return NotImplemented
         return self.frequency < other.frequency
 
-
 class CodeGenerator:
     def __init__(self):
         self.codes = {}
@@ -38,7 +37,6 @@ class CodeGenerator:
             heappush(heap, internal_node)
 
         return heap[0]
-
     def _generate_codes(self, node, code=""):
         if node.symbol:
             self.codes[node.symbol] = code
@@ -58,6 +56,50 @@ class CodeGenerator:
         with open(output_file_path, "w", encoding="utf-8") as file:
             json.dump(self.codes, file, ensure_ascii=False, indent=2)
 
+    def decode(self, encoded_file_path, output_file_path):
+        with open(encoded_file_path, "r", encoding="utf-8") as file:
+            encoded_text = file.read()
+
+        decoded_text = self._decode_text(encoded_text)
+
+        with open(output_file_path, "w", encoding="utf-8") as file:
+            file.write(decoded_text)
+
+    def _decode_text(self, encoded_text):
+        decoded_text = ""
+        current_node = root = self._build_tree_from_codes(self.codes)
+
+        for bit in encoded_text:
+            if bit == '0':
+                if current_node.left is not None:
+                    current_node = current_node.left
+            elif bit=='1':
+                if current_node.right is not None:
+                    current_node = current_node.right
+
+            if current_node.symbol is not None:
+                decoded_text += current_node.symbol
+                current_node = root
+
+        return decoded_text
+    def _build_tree_from_codes(self, codes):
+        root = Node()
+        for symbol, code in codes.items():
+            node = root
+            for bit in code:
+                if bit == '0':
+                    if node.left is None:
+                        node.left = Node()
+                    node = node.left
+                elif bit == '1':
+                    if node.right is None:
+                        node.right = Node()
+                    node = node.right
+                node.symbol = symbol
+        return root
+
+
 if __name__ == "__main__":
     cgen = CodeGenerator()
     cgen.gen_code("test.txt", "code.json")
+    cgen.decode("code.json", "decoded.txt")
