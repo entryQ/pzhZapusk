@@ -1,4 +1,3 @@
-
 import os
 MORSE_CODE_DICT = {'А': '•-', 'Б': '-•••', 'В': '•--', 'Г': '--•', 'Д': '-••',
                   'Е': '•',  'Ж': '•••-', 'З': '--••', 'И': '••', 'Й': '•---',
@@ -12,11 +11,11 @@ MORSE_CODE_DICT = {'А': '•-', 'Б': '-•••', 'В': '•--', 'Г': '--•
                   ':': '---•••', '?': '••--••', '!': '-•-•--', '-': '-••••-', ' ': '\t'}
 
 def text_to_morse(text):
-    MORSE_CODE_DICT = ''
+    morse_code = ''
     for char in text.upper():
         if char in MORSE_CODE_DICT:
-            MORSE_CODE_DICT += MORSE_CODE_DICT[char] + ' '
-    return MORSE_CODE_DICT.strip()
+            morse_code += MORSE_CODE_DICT[char] + ' '
+    return morse_code.strip()
 
 def encode_input():
     print("Выберите источник данных:")

@@ -1,5 +1,3 @@
-#MORSE_CODE_DICT_program.py
-
 from encoder import text_to_morse, encode_input
 from decoder import morse_to_text, decode_input
 
@@ -14,14 +12,14 @@ def main():
 
         if choice == '1':
             text_input = encode_input()
-            MORSE_CODE_DICT = text_to_morse(text_input)
-            print("Результат кодирования: ", MORSE_CODE_DICT)
+            morse_code = text_to_morse(text_input)
+            print("Результат кодирования: ", morse_code)
 
             save_to_file = input("Желаете сохранить результат в файл? (y/n): ")
             if save_to_file.lower() == 'y':
                 filename = input("Введите имя файла: ")
                 with open(filename, 'w') as file:
-                    file.write(MORSE_CODE_DICT)
+                    file.write(morse_code)
 
         elif choice == '2':
             morse_input = decode_input()

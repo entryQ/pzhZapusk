@@ -1,5 +1,3 @@
-# morse_decoder.py
-
 import os
 
 MORSE_CODE_DICT = {'А': '•-', 'Б': '-•••', 'В': '•--', 'Г': '--•', 'Д': '-••',
@@ -13,10 +11,10 @@ MORSE_CODE_DICT = {'А': '•-', 'Б': '-•••', 'В': '•--', 'Г': '--•
                   '8': '---••', '9': '----•', '.': '•-•-•-', ',': '--••--', ';': '-•-•-•',
                   ':': '---•••', '?': '••--••', '!': '-•-•--', '-': '-••••-', ' ': '\t'}
 
-def morse_to_text(MORSE_CODE_DICT):
-    MORSE_CODE_DICT = MORSE_CODE_DICT.split(' ')
+def morse_to_text(morse_code):
+    morse_code = morse_code.split(' ')
     text = ''
-    for code in MORSE_CODE_DICT:
+    for code in morse_code:
         for char, morse in MORSE_CODE_DICT.items():
             if code == morse:
                 text += char
