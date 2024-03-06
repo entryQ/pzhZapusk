@@ -15,7 +15,7 @@ def text_to_morse(text):
     for char in text.upper():
         if char in MORSE_CODE_DICT:
             morse_code += MORSE_CODE_DICT[char] + ' '
-    return morse_code.strip()
+    return morse_code
 
 def encode_input():
     print("Выберите источник данных:")
@@ -36,6 +36,9 @@ def encode_input():
         except FileNotFoundError:
             print(f"Файл {filename} не найден.")
             return encode_input()
+        except IsADirectoryError:
+            print(f"Повторите свой выбор")
+            return encode_input()
     else:
         print("Некорректный выбор. Пожалуйста, введите 1 или 2.")
-        return encode_input()
+        return encode_input() 

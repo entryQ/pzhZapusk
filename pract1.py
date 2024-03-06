@@ -15,7 +15,7 @@ def main():
             morse_code = text_to_morse(text_input)
             print("Результат кодирования: ", morse_code)
 
-            save_to_file = input("Желаете сохранить результат в файл? (y/n): ")
+            save_to_file = input("Cохранить результат в файл? (y/n): ")
             if save_to_file.lower() == 'y':
                 filename = input("Введите имя файла: ")
                 with open(filename, 'w') as file:
@@ -26,18 +26,18 @@ def main():
             text = morse_to_text(morse_input)
             print("Результат декодирования: ", text)
 
-            save_to_file = input("Желаете сохранить результат в файл? (y/n): ")
+            save_to_file = input("Cохранить результат в файл? (y/n): ")
             if save_to_file.lower() == 'y':
                 filename = input("Введите имя файла: ")
                 with open(filename, 'w') as file:
                     file.write(text)
 
         elif choice == '3':
-            print("Программа завершена.")
+            print("Программа завершена")
             break
 
         else:
-            print("Некорректный ввод. Пожалуйста, выберите корректное действие.")
+            print("Некорректный ввод.")
 
 if __name__ == "__main__":
     main()

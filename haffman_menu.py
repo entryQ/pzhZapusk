@@ -9,6 +9,8 @@ def create_code_folder():
     os.makedirs(folder_name)
     return folder_name
 
+
+
 def get_input_file():
     files_in_current_dir = [f for f in os.listdir('.') if os.path.isfile(f)]
 
@@ -27,24 +29,27 @@ def get_input_file():
             else:
                 print("Некорректный выбор. Пожалуйста, введите номер из списка.")
         except ValueError:
-            print("Некорректный ввод. Введите номер файла.")
+            print("Некорректный ввод.")
 
 def main():
-    input_file = get_input_file()
+    try:
+        input_file = get_input_file()
 
-cgen = CodeGenerator()
-code_folder = create_code_folder()
-code_file_path = os.path.join(code_folder, "code.json")
+        cgen = CodeGenerator()
+        code_folder = create_code_folder()
+        code_file_path = os.path.join(code_folder, "code.json")
 
-try:
-    cgen.gen_code(input_file, code_file_path)
-    print(f"Код Хаффмана сохранен. Код сохранен в файле: {code_file_path}")
-    decoded_output_path = os.path.join(code_folder, "decoded.txt")
-    cgen.decode(code_file_path, decoded_output_path)
-    print(f"Декодированный текст сохранен в файле: {decoded_output_path}")
+    
+        cgen.gen_code(input_file, code_file_path)
+        print(f"Код Хаффмана сохранен. Код сохранен в файле: {code_file_path}")
+        decoded_output_path = os.path.join(code_folder, "decoded.txt")
+        cgen.decode(code_file_path, decoded_output_path)
+        print(f"Декодированный текст сохранен в файле: {decoded_output_path}")
 
-except Exception as e:
-    print(f"Ошибка: {e}")
+    except Exception as e:
+        print(f"Ошибка: {e}")
+    except FileNotFoundError as e:
+        print(f"oshibka{e}")
 
 if __name__ == "__main__":
     main()

@@ -12,7 +12,7 @@ MORSE_CODE_DICT = {'А': '•-', 'Б': '-•••', 'В': '•--', 'Г': '--•
                   ':': '---•••', '?': '••--••', '!': '-•-•--', '-': '-••••-', ' ': '\t'}
 
 def morse_to_text(morse_code):
-    morse_code = morse_code.split(' ')
+    morse_code = morse_code.split(' ') 
     text = ''
     for code in morse_code:
         for char, morse in MORSE_CODE_DICT.items():
@@ -33,12 +33,15 @@ def decode_input():
         return morse_input
     elif choice == '2':
         filename = input("Введите имя файла для загрузки: ")
-        filepath = os.path.join(os.getcwd(), filename)  # Полный путь к файлу
+        filepath = os.path.join(os.getcwd(), filename)
         try:
             with open(filepath, 'r') as file:
                 return file.read()
         except FileNotFoundError:
             print(f"Файл {filename} не найден.")
+            return decode_input()
+        except IsADirectoryError:
+            print(f"Повторите свой выбор")
             return decode_input()
     else:
         print("Некорректный выбор. Пожалуйста, введите 1 или 2.")
