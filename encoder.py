@@ -29,7 +29,7 @@ def encode_input():
         return text_input
     elif choice == '2':
         filename = input("Введите имя файла для загрузки: ")
-        filepath = os.path.join(os.getcwd(), filename)  # Полный путь к файлу
+        filepath = os.path.join(os.getcwd(), filename)
         try:
             with open(filepath, 'r') as file:
                 return file.read()
