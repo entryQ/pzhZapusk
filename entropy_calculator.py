@@ -11,7 +11,7 @@ def calculate_shannon_entropy(text):
     return -sum(probabilities * math.log2(probabilities) for probabilities in probabilities)
 
 def calculate_alphabet_redundancy(hartley_entropy, shannon_entropy):
-    return hartley_entropy - shannon_entropy / hartley_entropy * 100
+    return ((hartley_entropy - shannon_entropy )/ hartley_entropy )* 100
 
 def main(filename):
     with open(filename, 'r', encoding='utf-8') as file:
